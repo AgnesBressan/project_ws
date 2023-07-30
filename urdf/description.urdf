@@ -1,0 +1,195 @@
+<robot name="description">
+
+<!--                    DEFINING MATERIALS   -->
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+<material name="green">
+    <color rgba=" 0.5 0.2 0.8 1"/>
+  </material>
+
+<!--Defining the robot-->
+
+<!--                      BASE LINK                    -->
+  <link name="base_link">
+
+    <inertial>
+      <origin xyz="0 0 0.08" rpy="0 0 0"/>
+      <mass value="21.6"/>
+      <inertia ixx="0.306"  ixy="0"  ixz="0" iyy="0.36" iyz="0" izz="0.54" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0.08" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 0.4 0.1" />
+      </geometry>
+      <material name="blue">
+      </material>
+    </visual>
+
+    <collision>
+      <origin  xyz="0 0 0.08" rpy="0 0 0"/>
+      <geometry>
+        <box  size="0.2 0.4 0.1" />
+      </geometry>
+    </collision>
+
+  </link>
+
+    <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+    <!--                    RIGHT FRONT WHEEL                       -->
+<!--                    RIGHT FRONT WHEEL                       -->
+    <link name="right_front_wheel">
+    <inertial>
+     <mass value="0.54"/>
+     <inertia ixx="0.000702"  ixy="0"  ixz="0" iyy="0.000702" iyz="0" izz="0.001323" />
+   </inertial>
+
+   <visual>
+     <geometry>
+       <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+     <material name="white">
+     </material>
+   </visual>
+
+   <collision>
+     <geometry>
+      <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+   </collision>
+    </link>
+    <gazebo reference="right_front_wheel">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <!--                    RIGHT BACK WHEEL                       -->
+  <link name="right_back_wheel">
+    
+    <inertial>
+      <mass value="0.54"/>
+      <inertia ixx="0.000702"  ixy="0"  ixz="0" iyy="0.000702" iyz="0" izz="0.001323" />
+    </inertial>
+
+    <visual> 
+      <geometry>
+      <cylinder  radius ="0.07" length="0.03"/>
+      </geometry>
+      <material name="white"></material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <cylinder  radius ="0.07" length="0.03"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <gazebo reference="right_back_wheel">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+
+    <!--                    LEFT FRONT WHEEL                       -->
+    <link name="left_front_wheel">
+      <inertial>
+     
+     <mass value="0.54"/>
+     <inertia ixx="0.000702"  ixy="0"  ixz="0" iyy="0.000702" iyz="0" izz="0.001323" />
+   </inertial>
+
+   <visual>
+     
+     <geometry>
+     <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+     <material name="white">
+     </material>
+   </visual>
+
+   <collision>
+     
+     <geometry>
+       <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+   </collision>
+    </link>
+    <gazebo reference="left_front_wheel">
+    <material>Gazebo/White</material>
+    </gazebo>
+    
+        <!--                    LEFT BACK WHEEL                       -->
+    <link name="left_back_wheel">
+    <inertial>
+     
+     <mass value="0.54"/>
+     <inertia ixx="0.000702"  ixy="0"  ixz="0" iyy="0.000702" iyz="0" izz="0.001323" />
+   </inertial>
+
+   <visual>
+     
+     <geometry>
+       <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+     <material name="white">
+     </material>
+   </visual>
+
+   <collision>
+     
+     <geometry>
+       <cylinder  radius ="0.07" length="0.03"/>
+     </geometry>
+   </collision>
+    </link><gazebo reference="left_back_wheel">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+
+        <!--                              JOINTS             -->
+
+    <!--           JOINT BASE TO RIGHT FRONT WHEEL       -->
+
+    <joint name="joint_base_to_right_front_wheel" type="continuous">
+    <origin xyz="0.115 0.09 0.07" rpy="1.57079633 1.57079633 1.57079633"/>
+    <axis xyz="0 0 1" rpy="0 0 0" />  
+    <parent link="base_link"/>
+    <child link="right_front_wheel"/>
+    </joint>
+
+        <!--           JOINT BASE TO RIGHT BACK WHEEL  -->
+    <joint name="joint_base_to_right_back_wheel" type="continuous">
+    <origin xyz="0.115 -0.09 0.07" rpy="1.57079633 1.57079633 1.57079633"/>
+    <axis xyz="0 0 1"  rpy="0 0 0"/>  
+    <parent link="base_link"/> 
+    <child link="right_back_wheel"/>
+    </joint>
+
+      <!--           JOINT BASE TO LEFT FRONT WHEEL  -->
+
+    <joint name="joint_base_to_left_front_wheel" type="continuous">
+    <origin xyz="-0.115 0.09 0.07" rpy="1.57079633 1.57079633 1.57079633"/>
+    <axis xyz="0 0 1" rpy="0 0 0" />  
+    <parent link="base_link"/>
+    <child link="left_front_wheel"/>
+    </joint>
+
+
+      <!--           JOINT BASE TO LEFT BACK WHEEL    -->
+    <joint name="joint_base_to_left_back_wheel" type="continuous">
+    <origin xyz="-0.115 -0.09 0.07" rpy="1.57079633 1.57079633 1.57079633" />
+    <axis xyz="0 0 1" rpy="0 0 0" />  
+    <parent link="base_link"/>
+    <child link="left_back_wheel"/>
+    </joint>
+
+</robot>
